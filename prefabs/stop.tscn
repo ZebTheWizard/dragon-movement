@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkd4yp58fe1o1"]
+
+[ext_resource type="Texture2D" uid="uid://bc06mbq3v4c5m" path="res://sprites/Stop.svg" id="1_yln0a"]
+[ext_resource type="Script" path="res://scripts/stop.gd" id="2_3537o"]
+
+[node name="Stop" type="Sprite3D"]
+texture = ExtResource("1_yln0a")
+script = ExtResource("2_3537o")

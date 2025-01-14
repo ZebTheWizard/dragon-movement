@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://uq8c2v8sbim3"]
+
+[ext_resource type="Texture2D" uid="uid://cc6sxg5fvkd62" path="res://sprites/dragon_1.svg" id="1_yja80"]
+[ext_resource type="Script" path="res://scripts/dragon.gd" id="2_vfyeq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_soptx"]
+
+[node name="Dragon" type="Area3D"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.85, 0, 3)
+script = ExtResource("2_vfyeq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_soptx")
+
+[node name="Sprite3D" type="Sprite3D" parent="CollisionShape3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+texture = ExtResource("1_yja80")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

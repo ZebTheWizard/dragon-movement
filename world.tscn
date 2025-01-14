@@ -1,0 +1,322 @@
+[gd_scene load_steps=17 format=3 uid="uid://byg6kn5gte0pj"]
+
+[ext_resource type="Texture2D" uid="uid://cpkpfvpgrt5q0" path="res://stages/welcome/bg_2.png" id="1_4m6kw"]
+[ext_resource type="Texture2D" uid="uid://bjgi0p044eufh" path="res://stages/gameplay/bg_2.png" id="1_yr0d8"]
+[ext_resource type="Texture2D" uid="uid://kjoboitp05lk" path="res://sprites/board.svg" id="2_881up"]
+[ext_resource type="Script" path="res://scripts/welcome.gd" id="2_g7br1"]
+[ext_resource type="Script" path="res://scripts/about.gd" id="3_8r22a"]
+[ext_resource type="Script" path="res://scripts/gameplay.gd" id="4_br5xm"]
+[ext_resource type="Script" path="res://scripts/instructions.gd" id="4_o4fg5"]
+[ext_resource type="PackedScene" uid="uid://dnh48a64yubyf" path="res://prefabs/arrow_right.tscn" id="7_stvux"]
+[ext_resource type="PackedScene" uid="uid://dx7ceae4jfr0a" path="res://prefabs/arrow_left.tscn" id="7_x5gsy"]
+[ext_resource type="Script" path="res://scripts/arrow_left.gd" id="8_ic5q5"]
+[ext_resource type="PackedScene" uid="uid://b0urds28mu5po" path="res://prefabs/home.tscn" id="10_ju2in"]
+
+[sub_resource type="SystemFont" id="SystemFont_qc76x"]
+font_names = PackedStringArray("Segoe UI")
+font_weight = 775
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_f4nru"]
+Label/constants/outline_size = 5
+Label/font_sizes/font_size = 28
+Label/fonts/font = SubResource("SystemFont_qc76x")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cpsj"]
+bg_color = Color(0.16, 0.16, 0.16, 1)
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54355"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tiil"]
+bg_color = Color(0.18, 0.18, 0.18, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[node name="World" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9999)
+keep_aspect = 0
+projection = 1
+size = 9.575
+far = 9999.0
+
+[node name="Welcome" type="Sprite3D" parent="."]
+texture = ExtResource("1_4m6kw")
+script = ExtResource("2_g7br1")
+
+[node name="Container" type="VBoxContainer" parent="Welcome"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelMargin" type="MarginContainer" parent="Welcome/Container"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Welcome/Container/LabelMargin"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = SubResource("Theme_f4nru")
+text = "Dragon Simulator"
+horizontal_alignment = 1
+
+[node name="ButtonsMargin" type="MarginContainer" parent="Welcome/Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Buttons" type="VBoxContainer" parent="Welcome/Container/ButtonsMargin"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Play" type="Button" parent="Welcome/Container/ButtonsMargin/Buttons"]
+layout_mode = 2
+text = "Play"
+
+[node name="Instructions" type="Button" parent="Welcome/Container/ButtonsMargin/Buttons"]
+layout_mode = 2
+text = "Instructions"
+
+[node name="About" type="Button" parent="Welcome/Container/ButtonsMargin/Buttons"]
+layout_mode = 2
+text = "About"
+
+[node name="About" type="Sprite3D" parent="."]
+texture = ExtResource("1_4m6kw")
+script = ExtResource("3_8r22a")
+
+[node name="MarginContainer" type="MarginContainer" parent="About"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="About/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0cpsj")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="About/MarginContainer"]
+layout_mode = 2
+
+[node name="Container" type="VBoxContainer" parent="About/MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelMargin" type="MarginContainer" parent="About/MarginContainer/ScrollContainer/Container"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="About/MarginContainer/ScrollContainer/Container/LabelMargin"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = SubResource("Theme_f4nru")
+text = "About"
+horizontal_alignment = 1
+
+[node name="TextMargin" type="MarginContainer" parent="About/MarginContainer/ScrollContainer/Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_bottom = 50
+
+[node name="Text" type="VBoxContainer" parent="About/MarginContainer/ScrollContainer/Container/TextMargin"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="About/MarginContainer/ScrollContainer/Container/TextMargin/Text"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Back in 2016, I stumbled across this family friendly strategy game called Chickapig sitting on Walmart shelves. Captivated by the artwork, I think I bought a copy during the holidays.
+
+The objective is to slide your character to the other side. The game seemed easy to learn and Chickapig embraces house rules so I knew the timer could be put aside. To me this is what makes games fun. 
+
+Everyone amired the cute characters and was excited to play!
+
+We played a few games and things quickly esculated!
+
+This game is not as good as the real Chickapig, but I wanted to put something out there."
+autowrap_mode = 3
+
+[node name="Play" type="Button" parent="About/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Home"
+
+[node name="Instructions" type="Sprite3D" parent="."]
+texture = ExtResource("1_4m6kw")
+script = ExtResource("4_o4fg5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Instructions"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="Instructions/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0cpsj")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Instructions/MarginContainer"]
+layout_mode = 2
+
+[node name="Container" type="VBoxContainer" parent="Instructions/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelMargin" type="MarginContainer" parent="Instructions/MarginContainer/ScrollContainer/Container"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Instructions/MarginContainer/ScrollContainer/Container/LabelMargin"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = SubResource("Theme_f4nru")
+text = "Instructions"
+horizontal_alignment = 1
+
+[node name="TextMargin" type="MarginContainer" parent="Instructions/MarginContainer/ScrollContainer/Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_bottom = 50
+
+[node name="Text" type="VBoxContainer" parent="Instructions/MarginContainer/ScrollContainer/Container/TextMargin"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Instructions/MarginContainer/ScrollContainer/Container/TextMargin/Text"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "1. Press  the dots to move the dragon.
+2. Press  the key to change speeds.
+3. Fly over or land on green square.
+
+You can press the arrow at the top right to skip ahead to a different level.
+
+Going to the home screen will reset your score."
+autowrap_mode = 3
+
+[node name="Play" type="Button" parent="Instructions/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Home"
+
+[node name="Gameplay" type="Sprite3D" parent="." node_paths=PackedStringArray("origin", "scoreLabel", "levelLabel")]
+texture = ExtResource("1_yr0d8")
+script = ExtResource("4_br5xm")
+origin = NodePath("Origin")
+scoreLabel = NodePath("MarginContainer/MarginContainer/VBoxContainer/ScoreLabel")
+levelLabel = NodePath("MarginContainer/MarginContainer2/VBoxContainer/LevelLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="Gameplay"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="Gameplay/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="Panel" type="Panel" parent="Gameplay/MarginContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_54355")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="Gameplay/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Level:
+1"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Gameplay/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="Panel" type="Panel" parent="Gameplay/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0tiil")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="ScoreLabel" type="Label" parent="Gameplay/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Score: 
+0"
+horizontal_alignment = 2
+
+[node name="Board" type="Sprite3D" parent="Gameplay"]
+transform = Transform3D(2.3, 0, 0, 0, 2.3, 0, 0, 0, 2.3, 0, 0, 1)
+texture = ExtResource("2_881up")
+
+[node name="Origin" type="Node3D" parent="Gameplay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.97446, 2.983, 2)
+
+[node name="Arrow Right" parent="Gameplay" instance=ExtResource("7_stvux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07837, 2.983, 2)
+
+[node name="Arrow Left" parent="Gameplay" instance=ExtResource("7_x5gsy")]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -4.10955, 2.97873, 2)
+visible = false
+script = ExtResource("8_ic5q5")
+
+[node name="Home" parent="Gameplay" instance=ExtResource("10_ju2in")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.12717, 3.02069, 2)
+
+[connection signal="pressed" from="Welcome/Container/ButtonsMargin/Buttons/Play" to="Welcome" method="_on_play_pressed"]
+[connection signal="pressed" from="Welcome/Container/ButtonsMargin/Buttons/Instructions" to="Welcome" method="_on_instructions_pressed"]
+[connection signal="pressed" from="Welcome/Container/ButtonsMargin/Buttons/About" to="Welcome" method="_on_about_pressed"]
+[connection signal="pressed" from="About/MarginContainer/Play" to="About" method="_on_play_pressed"]
+[connection signal="pressed" from="Instructions/MarginContainer/Play" to="Instructions" method="_on_play_pressed"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ft4mycjfl435"]
+
+[ext_resource type="Script" path="res://scripts/goal.gd" id="1_g2seu"]
+[ext_resource type="Texture2D" uid="uid://ck4sqy43a8515" path="res://sprites/goal.svg" id="2_ae23w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ovj0"]
+
+[node name="Goal" type="Area3D"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 2.5)
+script = ExtResource("1_g2seu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_2ovj0")
+
+[node name="Goal" type="Sprite3D" parent="CollisionShape3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+texture = ExtResource("2_ae23w")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
